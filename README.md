@@ -1,2 +1,2 @@
-# cst205_FInalProject
+# cst205_FinalProject
 Team 795
