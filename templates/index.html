@@ -14,8 +14,19 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h1>Group795 Final Project</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ form.img }}
+                    <input type="submit">
+                </form>
             </div>
         </div>
+        {% if img %}
+        <img class="card-img-top rounded" src={{ url_for('static', filename='uploads/' +img )}} alt="Image">
+
+        {% endif %}
+
+
     </div>
 </body>
 
