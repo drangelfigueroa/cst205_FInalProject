@@ -3,7 +3,7 @@ svg{
 }
 body{
     padding-top: 5%;
-    background-color:#272727; 
+    background-color:#353535; 
 }
 .btn{
     float: right;
@@ -40,7 +40,7 @@ body{
 }
 
 .card{
-    background-color: #535353;
+    background-color: #2d2d2d;
     color: whitesmoke;
 }
 

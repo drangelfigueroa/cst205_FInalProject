@@ -12,6 +12,7 @@ Jinja2==3.0.3
 MarkupSafe==2.0.1
 numpy==1.21.4
 opencv-python==4.5.4.60
+Pillow==8.4.0
 pycodestyle==2.8.0
 toml==0.10.2
 urllib3==1.26.7
