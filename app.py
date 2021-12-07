@@ -57,3 +57,5 @@ def manipulation(manipulation):
         man.rm_edited()
     if (manipulation == 'Face Detect'):
         man.faces()
+    if (manipulation == 'Sepia'):
+        man.sepia()
