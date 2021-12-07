@@ -15,7 +15,7 @@ edited_name = None
 # List of manipulations.
 # This list will populate the dropdown and
 # call your function. *Append new function names*
-MANIPULATIONS = ['Face Detect']
+MANIPULATIONS = ['Face Detect', 'Gray Scale', 'Sepia Fliter', 'Negative Filter']
 
 ####################################################
 # List of Functions
