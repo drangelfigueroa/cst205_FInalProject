@@ -4,8 +4,7 @@
  img_name: name of unedited image.
  edited_name: name of edited image.
 """
-from PIL import Image
-import numpy as np
+from PIL import Image, ImageFilter
 import cv2
 import os
 
@@ -15,9 +14,24 @@ edited_name = None
 
 # List of manipulations.
 # This list will populate the dropdown and
-# call your function. *Append new function names*
-MANIPULATIONS = ['Face Detect', 'Sepia']
+# call your function.
 
+# Format: (String for dropdown, function name)
+MANIPULATIONS = [ ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
+('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges', 'find_edges'), ('Sepia', 'sepia'),
+('Smooth', 'smooth')]
+
+
+
+
+def call_function(selected):
+    """
+        Will call function by itself. No need to add anything
+        to app.py. Just append tuple to MANIPULATIONS 
+    """
+    for name in MANIPULATIONS:
+        if(name[0]==selected):
+            globals()[name[1]]()
 
 def faces():
     """ Face Detection algorithm """
@@ -80,3 +94,57 @@ def rm_edited():
     if edited_name:
         os.remove(f'static/uploads/{edited_name}')
         edited_name = None
+
+def blur():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.BLUR)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+def contour():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.CONTOUR)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+def emboss():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.EMBOSS)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+def find_edges():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.FIND_EDGES)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+def edge_enhance():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.EDGE_ENHANCE_MORE)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+def smooth():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.SMOOTH_MORE)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')

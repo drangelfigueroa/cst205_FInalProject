@@ -64,7 +64,7 @@
                     </button>
                     <div class="dropdown-menu">
                         {% for m in manipulations %}
-                        <a onclick="select('{{m}}')" class="dropdown-item">{{m}}</a>
+                        <a onclick="select('{{m[0]}}')" class="dropdown-item">{{m[0]}}</a>
                         {% endfor %}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="select('None')">None</a>
