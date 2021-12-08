@@ -46,16 +46,18 @@ def index():
     return render_template('index.html', form=form, img=img, manipulations=man.MANIPULATIONS)
 
 
-def manipulation(manipulation):
+def manipulation(selected):
     """
         Calls Algorithm from manipulations.py
 
         *compare Argument with field from
         the MANIPULATIONS list in manipulations.py*
     """
-    if (manipulation == 'None'):
+    if (selected == 'None'):
         man.rm_edited()
-    if (manipulation == 'Face Detect'):
-        man.faces()
-    if (manipulation == 'Sepia'):
-        man.sepia()
+    # if (manipulation == 'Face Detect'):
+    #     man.faces()
+    # if (manipulation == 'Sepia'):
+    #     man.sepia()
+    else:
+        man.call_function(selected)
