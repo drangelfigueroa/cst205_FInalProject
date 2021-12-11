@@ -19,7 +19,7 @@ edited_name = None
 # Format: (String for dropdown, function name)
 MANIPULATIONS = [ ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
 ('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges', 'find_edges'), ('Sepia', 'sepia'),
-('Smooth', 'smooth')]
+('Smooth', 'smooth'), ('Scale Up','upScale'), ('Scale Down','downScale'), ('Black & White', 'bnw'), ('Mirror Flip', 'hRef')]
 
 
 
