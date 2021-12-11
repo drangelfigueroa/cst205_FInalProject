@@ -67,6 +67,46 @@ def sepia_getpixel(pixel):
         g, b = pixel[1], pixel[2]//2
     return r, g, b
 
+def upScale():
+    """ scale up image """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    w = im.width()//2
+    h = im.height()//2
+
+    im = im.resize(w,h)
+
+    im.save(f'static/uploads/{edited_name}')
+    
+def downScale():
+    """ scale down image """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    w = im.width()*2
+    h = im.height()*2
+
+    im = im.resize(w,h)
+
+    im.save(f'static/uploads/{edited_name}')
+    
+def bnw():
+    """ converts to black and white """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    im = im.convert('1') 
+
+    im.save(f'static/uploads/{edited_name}')
+    
+def hRef():
+    """ Reflects the image on the 'X' axis """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+    im = ImageOps.mirror(im)
+
+    im.save(f'static/uploads/{edited_name}')
 
 def sepia():
     global img_name, edited_name
