@@ -4,7 +4,7 @@
  img_name: name of unedited image.
  edited_name: name of edited image.
 """
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageOps
 import cv2
 import os
 
@@ -72,11 +72,12 @@ def upScale():
     global img_name, edited_name
     im = Image.open(f'static/uploads/{img_name}')
 
-    w = im.width()//2
-    h = im.height()//2
+    w = im.width//2
+    h = im.height//2
 
-    im = im.resize(w,h)
-
+    im = im.resize((w,h))
+    
+    edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
     
 def downScale():
@@ -84,11 +85,11 @@ def downScale():
     global img_name, edited_name
     im = Image.open(f'static/uploads/{img_name}')
 
-    w = im.width()*2
-    h = im.height()*2
+    w = im.width*2
+    h = im.height*2
 
-    im = im.resize(w,h)
-
+    im = im.resize((w,h))
+    edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
     
 def bnw():
@@ -97,7 +98,7 @@ def bnw():
     im = Image.open(f'static/uploads/{img_name}')
 
     im = im.convert('1') 
-
+    edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
     
 def hRef():
@@ -106,6 +107,7 @@ def hRef():
     im = Image.open(f'static/uploads/{img_name}')
     im = ImageOps.mirror(im)
 
+    edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
 
 def sepia():

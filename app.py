@@ -30,13 +30,7 @@ def index():
         man.rm_edited()
 
     if 'manip' in request.form:
-        # init Thread
-        t1 = threading.Thread(target=manipulation,
-                              args=(request.form['manip'],))
-        # start Thread
-        t1.start()
-        # wait for thread to finish
-        t1.join()
+        manipulation(request.form['manip'])
 
     if man.edited_name:
         img = man.edited_name
@@ -55,9 +49,5 @@ def manipulation(selected):
     """
     if (selected == 'None'):
         man.rm_edited()
-    # if (manipulation == 'Face Detect'):
-    #     man.faces()
-    # if (manipulation == 'Sepia'):
-    #     man.sepia()
     else:
         man.call_function(selected)
