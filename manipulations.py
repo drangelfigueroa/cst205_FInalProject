@@ -4,7 +4,7 @@
  img_name: name of unedited image.
  edited_name: name of edited image.
 """
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageOps
 import cv2
 import os
 
@@ -19,7 +19,7 @@ edited_name = None
 # Format: (String for dropdown, function name)
 MANIPULATIONS = [ ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
 ('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges', 'find_edges'), ('Sepia', 'sepia'),
-('Smooth', 'smooth')]
+('Smooth', 'smooth'), ('Scale Up','upScale'), ('Scale Down','downScale'), ('Black & White', 'bnw'), ('Mirror Flip', 'hRef')]
 
 
 
@@ -67,6 +67,48 @@ def sepia_getpixel(pixel):
         g, b = pixel[1], pixel[2]//2
     return r, g, b
 
+def upScale():
+    """ scale up image """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    w = im.width//2
+    h = im.height//2
+
+    im = im.resize((w,h))
+    
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+    
+def downScale():
+    """ scale down image """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    w = im.width*2
+    h = im.height*2
+
+    im = im.resize((w,h))
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+    
+def bnw():
+    """ converts to black and white """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    im = im.convert('1') 
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+    
+def hRef():
+    """ Reflects the image on the 'X' axis """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+    im = ImageOps.mirror(im)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
 
 def sepia():
     global img_name, edited_name
