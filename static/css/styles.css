@@ -1,10 +1,30 @@
+/* # CST207 - Final Project */
+/* # Time: Fall 2021 */
+/* # Date: 13-Dec.-2021 */
+/* # School: CSUMB */
+/* # Author: Team 795 */
+/* # Description: Application to convert IMG to an edited version based on user's choosing */
+/* ######################################################################################### */
+#bottomimg img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
+footer {
+    color: #1e1e1e;
+    /* color: #deddda; */
+    text-align: center;
+}
 svg{
     fill: whitesmoke;
 }
 body{
     font-family: Cantarell;
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("https://thumbs.dreamstime.com/z/collage-china-images-my-photos-travel-background-architecture-130162007.jpg");
     
-    background-color:#353535; 
+    
+    /* background-color:#353535;  */
 }
 h2{
     border-style: solid;
@@ -114,3 +134,4 @@ h2{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/* # END OF CODE */
