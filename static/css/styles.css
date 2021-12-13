@@ -1,0 +1,116 @@
+svg{
+    fill: whitesmoke;
+}
+body{
+    font-family: Cantarell;
+    
+    background-color:#353535; 
+}
+h2{
+    border-style: solid;
+    border-width:thin;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-color: black;
+    display: block;
+    color: white;
+    text-align: left;
+    padding-left: 1%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    margin-bottom: 5%;
+    
+    background-color: #1e1e1e;
+}
+
+.btn{
+    float: right;
+    
+}
+.btn-group{
+    float: left;
+}
+#options{
+    color: #deddda;
+    text-align: center;
+    font-size: x-large;
+}
+
+#label-btn{
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-block: 4%;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #1c71d8;
+
+    /* Disables text highlighting */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+#label-btn:hover{
+    background-color: #1a5fb4;
+}
+
+
+#submit{
+    float: right;
+}
+
+.card{
+    background-color: #2d2d2d;
+    color: whitesmoke;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+#dl_btn{
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #198754;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: large;
+    color: whitesmoke;
+}
+
+#dl_btn:hover{
+    background-color: #156e45;
+}
+
+/* Source:https://www.w3schools.com/howto/howto_css_loader.asp */
+.loader {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #1a5fb4; 
+    border-right: 16px solid #26a269; 
+    border-bottom: 16px solid #e5a50a; 
+    border-left: 16px solid #c64600; 
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
