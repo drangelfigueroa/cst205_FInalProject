@@ -2,9 +2,28 @@ svg{
     fill: whitesmoke;
 }
 body{
-    padding-top: 5%;
+    font-family: Cantarell;
+    
     background-color:#353535; 
 }
+h2{
+    border-style: solid;
+    border-width:thin;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-color: black;
+    display: block;
+    color: white;
+    text-align: left;
+    padding-left: 1%;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    margin-bottom: 5%;
+    
+    background-color: #1e1e1e;
+}
+
 .btn{
     float: right;
     
@@ -27,6 +46,14 @@ body{
     cursor: pointer;
     border-radius: 5px;
     background-color: #1c71d8;
+
+    /* Disables text highlighting */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 
@@ -46,6 +73,24 @@ body{
 
 .dropdown-item{
     cursor: pointer;
+}
+
+#dl_btn{
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #198754;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: large;
+    color: whitesmoke;
+}
+
+#dl_btn:hover{
+    background-color: #156e45;
 }
 
 /* Source:https://www.w3schools.com/howto/howto_css_loader.asp */

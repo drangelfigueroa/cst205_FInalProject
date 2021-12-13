@@ -17,11 +17,9 @@ edited_name = None
 # call your function.
 
 # Format: (String for dropdown, function name)
-MANIPULATIONS = [ ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
-('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges', 'find_edges'), ('Sepia', 'sepia'),
-('Smooth', 'smooth'), ('Scale Up','upScale'), ('Scale Down','downScale'), ('Black & White', 'bnw'), ('Mirror Flip', 'hRef')]
-
-
+MANIPULATIONS = [('Black & White', 'bnw'), ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
+                ('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges','find_edges'), ('Mirror Flip', 'hRef'), 
+                ('Scale Up', 'upScale'), ('Scale Down', 'downScale'), ('Sepia', 'sepia'), ('Smooth', 'smooth')]
 
 
 def call_function(selected):
@@ -30,8 +28,9 @@ def call_function(selected):
         to app.py. Just append tuple to MANIPULATIONS 
     """
     for name in MANIPULATIONS:
-        if(name[0]==selected):
+        if(name[0] == selected):
             globals()[name[1]]()
+
 
 def faces():
     """ Face Detection algorithm """
@@ -67,40 +66,44 @@ def sepia_getpixel(pixel):
         g, b = pixel[1], pixel[2]//2
     return r, g, b
 
-def upScale():
-    """ scale up image """
+
+def downScale():
+    """ scale down image """
     global img_name, edited_name
     im = Image.open(f'static/uploads/{img_name}')
 
     w = im.width//2
     h = im.height//2
 
-    im = im.resize((w,h))
-    
+    im = im.resize((w, h))
+
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
-    
-def downScale():
-    """ scale down image """
+
+
+def upScale():
+    """ scale up image """
     global img_name, edited_name
     im = Image.open(f'static/uploads/{img_name}')
 
     w = im.width*2
     h = im.height*2
 
-    im = im.resize((w,h))
+    im = im.resize((w, h))
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
-    
+
+
 def bnw():
     """ converts to black and white """
     global img_name, edited_name
     im = Image.open(f'static/uploads/{img_name}')
 
-    im = im.convert('1') 
+    im = im.convert('1')
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
-    
+
+
 def hRef():
     """ Reflects the image on the 'X' axis """
     global img_name, edited_name
@@ -109,6 +112,7 @@ def hRef():
 
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
+
 
 def sepia():
     global img_name, edited_name
@@ -137,6 +141,7 @@ def rm_edited():
         os.remove(f'static/uploads/{edited_name}')
         edited_name = None
 
+
 def blur():
     global img_name, edited_name
 
@@ -145,6 +150,7 @@ def blur():
 
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
+
 
 def contour():
     global img_name, edited_name
@@ -155,6 +161,7 @@ def contour():
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
 
+
 def emboss():
     global img_name, edited_name
 
@@ -163,6 +170,7 @@ def emboss():
 
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
+
 
 def find_edges():
     global img_name, edited_name
@@ -173,6 +181,7 @@ def find_edges():
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
 
+
 def edge_enhance():
     global img_name, edited_name
 
@@ -181,6 +190,7 @@ def edge_enhance():
 
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
+
 
 def smooth():
     global img_name, edited_name
