@@ -2,24 +2,36 @@
  All of our image manipulation functions should go here.
 
  img_name: name of unedited image.
- edit_name: name of edited image.
+ edited_name: name of edited image.
 """
-import numpy as np
+from PIL import Image, ImageFilter, ImageOps
 import cv2
 import os
 
-global img_name, edit_name
+global img_name, edited_name
 img_name = None
 edited_name = None
 
 # List of manipulations.
 # This list will populate the dropdown and
-# call your function. *Append new function names*
-MANIPULATIONS = ['Face Detect', 'Gray Scale', 'Sepia Fliter', 'Negative Filter']
+# call your function.
 
-####################################################
-# List of Functions
-####################################################
+# Format: (String for dropdown, function name)
+MANIPULATIONS = [('Black & White', 'bnw'), ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
+                ('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges','find_edges'), ('Mirror Flip', 'hRef'), 
+                ('Scale Up', 'upScale'), ('Scale Down', 'downScale'), ('Sepia', 'sepia'), ('Smooth', 'smooth')]
+
+
+def call_function(selected):
+    """
+        Will call function by itself. No need to add anything
+        to app.py. Just append tuple to MANIPULATIONS 
+    """
+    for name in MANIPULATIONS:
+        if(name[0] == selected):
+            globals()[name[1]]()
+
+
 def faces():
     """ Face Detection algorithm """
     global img_name, edited_name
@@ -42,6 +54,78 @@ def faces():
     cv2.imwrite(f'static/uploads/{edited_name}', img)
 
 
+def sepia_getpixel(pixel):
+    if pixel[0] < 63:
+        r, g, b = int(pixel[0]*1.1), pixel[1], int(pixel[2]*.9)
+    elif pixel[0] > 62 and pixel[0] < 192:
+        r, g, b = int(pixel[0]*1.15), pixel[1], int(pixel[2]*.85)
+    else:
+        r = int(pixel[0]*1.08)
+        if r > 255:
+            r = 255
+        g, b = pixel[1], pixel[2]//2
+    return r, g, b
+
+
+def downScale():
+    """ scale down image """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    w = im.width//2
+    h = im.height//2
+
+    im = im.resize((w, h))
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def upScale():
+    """ scale up image """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    w = im.width*2
+    h = im.height*2
+
+    im = im.resize((w, h))
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def bnw():
+    """ converts to black and white """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+
+    im = im.convert('1')
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def hRef():
+    """ Reflects the image on the 'X' axis """
+    global img_name, edited_name
+    im = Image.open(f'static/uploads/{img_name}')
+    im = ImageOps.mirror(im)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def sepia():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+
+    sepia_list = map(sepia_getpixel, im.getdata())
+    im.putdata(list(sepia_list))
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
 def rm_img():
     """Helper function to clear image"""
     global img_name
@@ -57,73 +141,62 @@ def rm_edited():
         os.remove(f'static/uploads/{edited_name}')
         edited_name = None
 
-########################################################
-# Sub-function
-# Action: Formula for Every pixel change into GrayScale
-# Location: GrayScale Function
-########################################################
-def rgb2gray(self, p):
-    new_red = int(p[0] * 0.2989)
-    new_green = int(p[1] * 0.5870)
-    new_blue = int(p[2] * 0.1140)
-    gray = new_red + new_green + new_blue
-    return (gray,) * 3
 
-####################################################
-# Function
-# Action: Edit IMG into GrayScale
-####################################################
-def grayscale(self, path):
+def blur():
     global img_name, edited_name
-    img = cv2.imread(f'static/uploads/{img_name}')
 
-    gray_list = map(self.rgb2gray, img.getdata())
-    img.putdata(list(gray_list))
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.BLUR)
 
-    cv2.imwrite(f'static/uploads/{edited_name}', img)
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
 
-####################################################
-# Function
-# Action: Edit IMG with Sepia filter
-####################################################
-def sepia(self, path):
+
+def contour():
     global img_name, edited_name
-    img = cv2.imread(f'static/uploads/{img_name}')
 
-    sepia_list = []
-    for i in img.getdata():
-        new_val = (0.3 * i[0] + 0.59 * i[1] + 0.11 * i[2])
-        new_red = int(new_val * 2)
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.CONTOUR)
 
-        if new_red > 255:
-            new_red = 255
-        new_green = int(new_val * 1.5)
-        if new_green > 255:
-            new_green = 255
-        new_blue = int(new_val)
-        if new_blue > 255:
-            new_blue = 255
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
 
-        sepia_list.append((new_red, new_green, new_blue))
-    img.putdata(sepia_list)
-    cv2.imwrite(f'static/uploads/{edited_name}', img)
 
-########################################################
-# Sub-function
-# Action: Formula for Every pixel change Negative filter
-# Location: Negative filter Function
-########################################################
-def rgb2neg(self, pixel):
-    return tuple(map(lambda a : 255 - a, pixel))
-
-####################################################
-# Function
-# Action: Edit IMG with Negative filter
-####################################################
-def negative(self, path):
+def emboss():
     global img_name, edited_name
-    img = cv2.imread(f'static/uploads/{img_name}')
 
-    negative_list = map( self.rgb2neg, img.getdata() )
-    img.putdata(list(negative_list))
-    cv2.imwrite(f'static/uploads/{edited_name}', img)
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.EMBOSS)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def find_edges():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.FIND_EDGES)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def edge_enhance():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.EDGE_ENHANCE_MORE)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')
+
+
+def smooth():
+    global img_name, edited_name
+
+    im = Image.open(f'static/uploads/{img_name}')
+    im = im.filter(ImageFilter.SMOOTH_MORE)
+
+    edited_name = f'edited_{img_name}'
+    im.save(f'static/uploads/{edited_name}')

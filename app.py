@@ -30,13 +30,7 @@ def index():
         man.rm_edited()
 
     if 'manip' in request.form:
-        # init Thread
-        t1 = threading.Thread(target=manipulation,
-                              args=(request.form['manip'],))
-        # start Thread
-        t1.start()
-        # wait for thread to finish
-        t1.join()
+        manipulation(request.form['manip'])
 
     if man.edited_name:
         img = man.edited_name
@@ -46,20 +40,14 @@ def index():
     return render_template('index.html', form=form, img=img, manipulations=man.MANIPULATIONS)
 
 
-def manipulation(manipulation):
+def manipulation(selected):
     """
         Calls Algorithm from manipulations.py
 
         *compare Argument with field from
         the MANIPULATIONS list in manipulations.py*
     """
-    if (manipulation == 'None'):
+    if (selected == 'None'):
         man.rm_edited()
-    if (manipulation == 'Face Detect'):
-        man.faces()
-    if (manipulation == 'Gray Scale'):
-        man.grayscale()
-    if (manipulation == 'Sepia Fliter'):
-        man.sepia()
-    if (manipulation == 'Negative Filter'):
-        man.negative()
+    else:
+        man.call_function(selected)
