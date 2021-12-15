@@ -1,3 +1,10 @@
+# CST207 - Final Project
+# Time: Fall 2021
+# Date: 13-Dec.-2021
+# School: CSUMB
+# Author: Team 795
+# Description: Application to convert IMG to an edited version based on user's choosing
+#########################################################################################
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 from flask_uploads import UploadSet, IMAGES, configure_uploads
@@ -47,3 +54,4 @@ def manipulation(selected):
         man.rm_edited()
     else:
         man.call_function(selected)
+# END OF CODE
