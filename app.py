@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 import forms
-import threading
 import manipulations as man
 import os
 
@@ -42,10 +41,7 @@ def index():
 
 def manipulation(selected):
     """
-        Calls Algorithm from manipulations.py
-
-        *compare Argument with field from
-        the MANIPULATIONS list in manipulations.py*
+        Calls function from manipulations.py
     """
     if (selected == 'None'):
         man.rm_edited()
