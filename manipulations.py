@@ -19,7 +19,8 @@ edited_name = None
 # Format: (String for dropdown, function name)
 MANIPULATIONS = [('Black & White', 'bnw'), ('Blur', 'blur'), ('Contour', 'contour'), ('Edge Enhance', 'edge_enhance'),
                 ('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges','find_edges'), ('Mirror Flip', 'hRef'), 
-                ('Scale Up', 'upScale'), ('Scale Down', 'downScale'), ('Sepia', 'sepia'), ('Smooth', 'smooth')]
+                ('Scale Up', 'upScale'), ('Scale Down', 'downScale'), ('Sepia', 'sepia'), ('Smooth', 'smooth'), 
+                ('Red Intensity', 'red'), ('Green Intensity', 'green'), ('Blue Intensity', 'blue')]
 
 
 def call_function(selected):
@@ -200,3 +201,29 @@ def smooth():
 
     edited_name = f'edited_{img_name}'
     im.save(f'static/uploads/{edited_name}')
+
+####################################################
+# Function
+# Action: Changes the intensity of the RGB colors
+####################################################
+# color_id is either 0, 1, or 2 depending on if its red, green, or blue (i.e. 0 = red, 1 = green, 2 = blue)
+# intensity ranges from 0 to beyond with 0 removing all of that value. You multiply all of the rgb values by the amount of intesity
+def rgb_intensity(color_id, intensity):
+    global img_name, edited_name
+    img = Image.open(f'static/uploads/{img_name}')
+    intensity_list = []
+    for i in img.getdata():
+        temp_rgb = list(i)
+        temp_rgb[color_id] *= intensity
+        intensity_list.append(tuple(temp_rgb))
+    
+    img.putdata(list(intensity_list))
+    edited_name = f'edited_{img_name}'
+    img.save(f'static/uploads/{edited_name}')
+
+def red():
+    rgb_intensity(0, 2)
+def green():
+    rgb_intensity(1, 2)
+def blue():
+    rgb_intensity(2, 2)
