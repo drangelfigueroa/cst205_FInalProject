@@ -29,7 +29,7 @@ MANIPULATIONS = [('Black & White', 'bnw'), ('Blur', 'blur'), ('Contour', 'contou
                 ('Emboss', 'emboss'), ('Face Detect', 'faces'), ('Find Edges','find_edges'), ('Mirror Flip', 'hRef'), 
                 ('Scale Up', 'upScale'), ('Scale Down', 'downScale'), ('Sepia', 'sepia'), ('Smooth', 'smooth'), 
                 ('Red Intensity', 'red'), ('Green Intensity', 'green'), ('Blue Intensity', 'blue'), ('Negative', 'neg'),
-                ('Grey Scale', 'greyScale'), ('Image Contrast', 'contrast'), ('Image Blurry', 'blurry')]
+                ('Grey Scale', 'greyScale'), ('Image Contrast', 'contrast')]
 
 ####################################################
 # List of Functions
@@ -181,10 +181,10 @@ def rm_edited():
         os.remove(f'static/uploads/{edited_name}')
         edited_name = None
 
-########################################################
+####################################################
 # Function
-# Action: Formula to blur the IMG
-########################################################
+# Action: Edit IMG with IMG Blurry
+####################################################
 def blur():
     global img_name, edited_name
 
@@ -322,18 +322,4 @@ def contrast():
 
     edited_name = f'edited_{img_name}'
     cv2.imwrite(f'static/uploads/{edited_name}', contrast_img)
-
-####################################################
-# Function
-# Action: Edit IMG with IMG Blurry
-####################################################
-def blurry():
-    global img_name, edited_name
-    img = cv2.imread(f'static/uploads/{img_name}')
-    blur_image = cv2.GaussianBlur(img, (7,7), 0)
-
-    edited_name = f'edited_{img_name}'
-    cv2.imwrite(f'static/uploads/{edited_name}', blur_image)
-
-
 # END OF CODE
