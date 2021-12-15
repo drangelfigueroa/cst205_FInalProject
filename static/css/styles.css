@@ -12,19 +12,16 @@
     width: 100px;
 }
 footer {
-    color: #1e1e1e;
-    /* color: #deddda; */
+    /* color: #1e1e1e; */
+    color: #deddda;
     text-align: center;
 }
 svg{
     fill: whitesmoke;
 }
 body{
-    font-family: Cantarell;
-    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("https://thumbs.dreamstime.com/z/collage-china-images-my-photos-travel-background-architecture-130162007.jpg");
-    
-    
-    /* background-color:#353535;  */
+    font-family: Cantarell;    
+    background-color:#353535; 
 }
 h2{
     border-style: solid;
