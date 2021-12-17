@@ -1,6 +1,6 @@
 # Team 795: Foto
 
-## About
+### About
 A web application made with Flask that allows a user to upload an image and manipulate
 it by choosing from a list of filters.
 
