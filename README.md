@@ -14,6 +14,7 @@ it by choosing from a list of filters.
 
 #### Export App
 **Linux/Mac**: `export FLASK_APP=app.py`
+
 **CMD**: `set FLASK_APP=app.py`
 
 #### Run
