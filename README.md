@@ -10,12 +10,12 @@ it by choosing from a list of filters.
 ### How to Run
 
 #### Install Requirements
-**In project directory**: `pip install -r requirements.txt`
+In project directory: `pip install -r requirements.txt`
 
 #### Export App
-**Linux/Mac**: `export FLASK_APP=app.py`
+Linux/Mac: `export FLASK_APP=app.py`
 
-**CMD**: `set FLASK_APP=app.py`
+CMD: `set FLASK_APP=app.py`
 
 #### Run
 `flask run`
