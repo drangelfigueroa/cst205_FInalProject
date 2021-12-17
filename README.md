@@ -11,14 +11,14 @@ it by choosing from a list of filters.
 
 ****
 
-### Team Members: 
+### Team Members
 1. Daniel Rangel Figueroa (Team Leader)
 2. Roshan Indika Menik Arachchi Menik Arachchige
 3. Arthur Timpe
 4. Dylan Masters 
 
-### Class:
+### Class
 CST 205 Fall 2021
 
-### Last Updated:
+### Last Updated
 16th December 2021
