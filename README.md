@@ -1,5 +1,10 @@
 # Team 795: Foto 
+
 [Repository](https://github.com/drangelfigueroa/cst205_FinalProject.git) 
+
+
+https://user-images.githubusercontent.com/71914675/147886661-fcb3f248-6f9d-4f1f-81c3-44d6dae9beb7.mp4
+
 
 ### About
 A web application made with Flask that allows a user to upload an image and manipulate
